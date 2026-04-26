@@ -1,0 +1,10 @@
+const express = require("express");
+const router = express.Router();
+const { banUser, getAllUsers, updateUserRole, getStats } = require("../controllers/adminController");
+const authMiddleware = require("../middlewares/authMiddleware");
+const adminMiddleware = require("../middlewares/adminMiddleware");
+router.get("/stats", authMiddleware, adminMiddleware, getStats);
+router.get("/users", authMiddleware, adminMiddleware, getAllUsers);
+router.put("/ban/:userId", authMiddleware, adminMiddleware, banUser);
+router.put("/role/:userId", authMiddleware, adminMiddleware, updateUserRole);
+module.exports = router;
